@@ -1,0 +1,2 @@
+http://developer.android.com/tools/publishing/app-signing.html#setup
+keytool -genkey -v -keystore makulabs-release-key.keystore -alias makulabs -keyalg RSA -keysize 2048 -validity 10000
