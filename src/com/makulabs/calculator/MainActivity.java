@@ -4,8 +4,10 @@ import com.makulabs.controllers.*;
 
 import android.os.Bundle;
 import android.app.Activity;
+import android.util.Log;
 import android.view.Menu;
 
+import com.google.android.gcm.GCMRegistrar;
 
 public class MainActivity extends Activity {
 
@@ -17,6 +19,15 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
         
         mainActivityController = new com.makulabs.controllers.MainActivityController(this);
+
+        GCMRegistrar.checkDevice(this);
+        GCMRegistrar.checkManifest(this);
+        final String regId = GCMRegistrar.getRegistrationId(this);
+        if (regId.equals("")) {
+          GCMRegistrar.register(this, Finals.SENDER_ID);
+        } else {
+        	Log.i("Main", "Already registered");
+        }    
     }
 
     @Override
